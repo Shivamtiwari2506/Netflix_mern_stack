@@ -5,8 +5,23 @@ const mongoose = require("mongoose");
 require("dotenv").config()
 
 const app = express();
+// Define allowed origins
+const allowedOrigins = ['http://localhost:3000', 'https://netflix-mern-stack.vercel.app/'];
 
-app.use(cors());
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true); // Allow access
+    } else {
+      callback(new Error('Not allowed by CORS')); // Block access
+    }
+  },
+  credentials: true, // Allow cookies or credentials
+};
+
+// Use CORS middleware
+app.use(cors(corsOptions));
+
 app.use(express.json());
 
 mongoose
