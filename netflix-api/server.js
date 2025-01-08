@@ -6,7 +6,7 @@ require("dotenv").config()
 
 const app = express();
 
-app.use(cors({origin:'https://netflix-mern-stack.vercel.app/'}));
+app.use(cors({origin:'https://netflix-mern-stack.vercel.app'}));
 
 app.use(express.json());
 
